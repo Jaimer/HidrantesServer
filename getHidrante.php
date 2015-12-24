@@ -1,11 +1,5 @@
 <?php
-/**
- * Obtiene todos los gastos de la base de datos
- */
 
-/**
- * Constantes para construcción de respuesta
- */
 const ESTADO = "estado";
 const DATOS = "hidrantes";
 const MENSAJE = "mensaje";
@@ -19,14 +13,14 @@ require 'hidrantes.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Obtener gastos de la base de datos
-    $hidrantes = Hidrante::getAll();
+    $movimientos = Hidrante::getAll();
 
     // Definir tipo de la respuesta
     header('Content-Type: application/json');
 
-    if ($hidrantes) {
+    if ($movimientos) {
         $datos[ESTADO] = CODIGO_EXITO;
-        $datos[DATOS] = $hidrantes;
+        $datos[DATOS] = $movimientos;
         print json_encode($datos);
     } else {
         print json_encode(array(

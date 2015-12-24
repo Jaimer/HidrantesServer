@@ -1,9 +1,6 @@
 <?php
 
-/**
- * Representa el data de los gastos
- * almacenados en la base de datos
- */
+
 require 'conexion.php';
 
 class Hidrante
@@ -30,18 +27,6 @@ class Hidrante
 	const FOTO = "foto";
 	
 	const OBS = "obs";
-
-	const fecha_crea = "fecha_crea";
-	
-	const fecha_mod = "fecha_mod";
-	
-	const fecha_insp = "fecha_insp";
-	
-	const fecha_man = "fecha_man";
-	
-	const USUARIO_CREA = "usuario_crea";
-	
-	const USUARIO_MOD = "usuario_mod";
 	
     function __construct()
     {
@@ -83,14 +68,9 @@ class Hidrante
 				self::T25 . "," .
 				self::ACOPLE . "," .
 				self::FOTO . "," .
-				self::OBS . "," .
-				self::FECHA_CREA . "," .
-				self::FECHA_MOD . "," .
-				self::FECHA_INSP . "," .
-				self::FECHA_MAN . "," .
-				self::USUARIO_CREA . "," .
-                self::USUARIO_MOD . ")" .
-                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				self::OBS 
+                . ")" .
+                " VALUES(?,?,?,?,?,?,?,?,?)";
 
             // Preparar la sentencia
             $sentencia = $pdo->prepare($comando);
@@ -103,13 +83,7 @@ class Hidrante
 			$sentencia->bindParam(1, $t25);
             $sentencia->bindParam(2, $acople);
             $sentencia->bindParam(3, $foto);
-            $sentencia->bindParam(4, $obs);			
-            $sentencia->bindParam(2, $fecha_crea);
-            $sentencia->bindParam(3, $fecha_mod);
-            $sentencia->bindParam(4, $fecha_insp);
-			$sentencia->bindParam(1, $fecha_man);
-            $sentencia->bindParam(2, $usuario_crea);
-            $sentencia->bindParam(3, $usuario_mod);
+            $sentencia->bindParam(4, $obs);
 
             $nombre = $object[self::NOMBRE];
             $posicion = $object[self::POSICION];
@@ -120,12 +94,6 @@ class Hidrante
 			$acople = $object[self::ACOPLE];
             $foto= $object[self::FOTO];
             $obs = $object[self::OBS];
-			$fecha_crea = $object[self::FECHA_CREA];
-            $fecha_mod = $object[self::FECHA_MOD];
-            $fecha_insp = $object[self::FECHA_INSP];
-			$fecha_man = $object[self::FECHA_MAN];
-			$usuario_crea = $object[self::USUARIO_CREA];
-            $usuario_mod = $object[self::USUARIO_MOD];
 
             $sentencia->execute();
 
