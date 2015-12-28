@@ -4,7 +4,7 @@
  * Representa el data de los gastos
  * almacenados en la base de datos
  */
-require 'conexion.php';
+require_once 'conexion.php';
 
 class Movimiento
 {
@@ -78,7 +78,7 @@ class Movimiento
     }
 	
 	public static function getRows(){
-		$consulta = "SELECT COUNT(*) FROM " . SELF::TABLE_NAME;
+		$consulta = "SELECT COUNT(*) AS Filas FROM " . self::TABLE_NAME; //Se agrega alias para que el resultado Json tenga un titulo
 		
 		try{
 			// Preparar sentencia

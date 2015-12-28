@@ -1,1 +1,5 @@
 [06-Dec-2015 15:18:25 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 82
+[24-Dec-2015 11:54:04 America/New_York] PHP Fatal error:  Class 'SELF' not found in /home/yoloofpp/public_html/hidrantes/movimientos.php on line 81
+[24-Dec-2015 11:54:49 America/New_York] PHP Fatal error:  Class 'SELF' not found in /home/yoloofpp/public_html/hidrantes/movimientos.php on line 81
+[26-Dec-2015 16:24:22 America/New_York] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')' in /home/yoloofpp/public_html/hidrantes/setHidrante.php on line 29
+[26-Dec-2015 16:24:54 America/New_York] PHP Fatal error:  Cannot redeclare class DatabaseConnection in /home/yoloofpp/public_html/hidrantes/conexion.php on line 11

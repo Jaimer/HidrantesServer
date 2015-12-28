@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             array(
                 ESTADO => CODIGO_EXITO,
                 MENSAJE => 'Creación exitosa',
-                ID_GASTO => $idMovimiento)
+                ID_MOVIMIENTO => $idMovimiento)
 
         );
     } else {
