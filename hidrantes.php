@@ -51,6 +51,22 @@ class Hidrante
             return false;
         }
     }
+	
+	public static function getHidrante($id){
+		$consulta = "SELECT * FROM ".self::TABLE_NAME." WHERE _id = ".$id;
+		
+		 try {
+            // Preparar sentencia
+            $comando = DatabaseConnection::getInstance()->getDb()->prepare($consulta);
+            // Ejecutar sentencia preparada
+            $comando->execute();
+
+            return $comando->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return false;
+        }
+	}
 
     public static function insertRow($object)
     {
@@ -74,29 +90,30 @@ class Hidrante
 
             // Preparar la sentencia
             $sentencia = $pdo->prepare($comando);
-
-            $sentencia->bindParam(1, $nombre);
-            $sentencia->bindParam(2, $posicion);
-            $sentencia->bindParam(3, $estado);
-			$sentencia->bindParam(1, $psi);
-            $sentencia->bindParam(4, $t4);
-			$sentencia->bindParam(1, $t25);
-            $sentencia->bindParam(2, $acople);
-            $sentencia->bindParam(3, $foto);
-            $sentencia->bindParam(4, $obs);
-
-            $nombre = $object[self::NOMBRE];
+			//print_r($pdo->errorInfo());
+			
+			$nombre = $object[self::NOMBRE];
             $posicion = $object[self::POSICION];
             $estado = $object[self::ESTADO];
-			$estado = $object[self::PSI];
+			$psi = $object[self::PSI];
             $t4 = $object[self::T4];
 			$t25 = $object[self::T25];
 			$acople = $object[self::ACOPLE];
             $foto= $object[self::FOTO];
             $obs = $object[self::OBS];
 
-            $sentencia->execute();
+            $sentencia->bindParam(1, $nombre);
+            $sentencia->bindParam(2, $posicion);
+            $sentencia->bindParam(3, $estado);
+			$sentencia->bindParam(4, $psi, PDO::PARAM_INT);
+            $sentencia->bindParam(5, $t4, PDO::PARAM_INT);
+			$sentencia->bindParam(6, $t25, PDO::PARAM_INT);
+            $sentencia->bindParam(7, $acople);
+            $sentencia->bindParam(8, $foto);
+            $sentencia->bindParam(9, $obs);
 
+            $sentencia->execute();
+			
             // Retornar en el último id insertado
             return $pdo->lastInsertId();
         } catch (PDOException $e) {

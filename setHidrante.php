@@ -17,20 +17,26 @@ require 'movimientos.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Decodificando formato Json
-    $body = json_decode(file_get_contents("php://input"), true);
+	$datos = file_get_contents("php://input");
+	$txthidrante = fopen("hidrante.txt", "w");
+	$texto = print_r($datos, true);
+	fwrite($txthidrante, $texto);
+	fclose($txthidrante);
 
-    // Insertar gasto
-    //$idHidrante = Hidrante::insertRow($body);
-	$idHidrante = 1;
+    // Decodificando formato Json
+    $body = json_decode($datos, true);
+	
+    // Insertar hidrante
+    $idHidrante = Hidrante::insertRow($body);
+	//$idHidrante = 1; ->Pruebas
 
     if ($idHidrante) {
 		//Crear movimiento
 		$movimiento = array('id_hidrante' => $idHidrante,
 										'fecha_mod' => date("Y-m-d H:i:s"),
-										'usuario_mod' => 'jmoscoso');
-		//$idMovimiento = Movimiento::insertRow($movimiento);
-		$idMovimiento = 1;
+										'usuario_mod' => '0924102270');
+		$idMovimiento = Movimiento::insertRow($movimiento);
+		//$idMovimiento = 1; -> Pruebas
 		
 		$movimiento = array("idmovimiento" => $idMovimiento)+$movimiento;
         // Código de éxito

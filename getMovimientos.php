@@ -46,6 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				));
 			}
 			break;
+		case "LAS":
+			$movimientos = Movimiento::getLastMovs($_GET['NUM']);
+			
+			if($movimientos){
+				$datos[ESTADO] = CODIGO_EXITO;
+				$datos[DATOS] = $movimientos;
+				print json_encode($datos);
+			} else {
+				print json_encode(array(
+					ESTADO => CODIGO_FALLO,
+					MENSAJE => "Ha ocurrido un error"
+				));
+			}
+			break;
 		default:
 			print json_encode(array(
 					ESTADO => CODIGO_FALLO,

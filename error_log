@@ -3,3 +3,10 @@
 [24-Dec-2015 11:54:49 America/New_York] PHP Fatal error:  Class 'SELF' not found in /home/yoloofpp/public_html/hidrantes/movimientos.php on line 81
 [26-Dec-2015 16:24:22 America/New_York] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')' in /home/yoloofpp/public_html/hidrantes/setHidrante.php on line 29
 [26-Dec-2015 16:24:54 America/New_York] PHP Fatal error:  Cannot redeclare class DatabaseConnection in /home/yoloofpp/public_html/hidrantes/conexion.php on line 11
+[31-Dec-2015 13:10:15 America/New_York] PHP Warning:  fwrite() expects parameter 2 to be string, array given in /home/yoloofpp/public_html/hidrantes/setHidrante.php on line 47
+[31-Dec-2015 13:43:02 America/New_York] PHP Fatal error:  Call to a member function errorInfo() on a non-object in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 77
+[31-Dec-2015 15:11:46 America/New_York] PHP Fatal error:  Undefined class constant 'NOMBRE' in /home/yoloofpp/public_html/hidrantes/movimientos.php on line 66
+[01-Jan-2016 14:40:55 America/New_York] PHP Parse error:  syntax error, unexpected 'e' (T_STRING), expecting variable (T_VARIABLE) in /home/yoloofpp/public_html/hidrantes/movimientos.php on line 104
+[01-Jan-2016 16:59:01 America/New_York] PHP Fatal error:  Class 'Movimientos' not found in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 16
+[01-Jan-2016 17:15:41 America/New_York] PHP Parse error:  syntax error, unexpected '}' in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 39
+[02-Jan-2016 10:45:38 America/New_York] PHP Fatal error:  Function name must be a string in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 29

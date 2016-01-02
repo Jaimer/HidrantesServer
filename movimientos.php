@@ -58,21 +58,21 @@ class Movimiento
 
             // Preparar la sentencia
             $sentencia = $pdo->prepare($comando);
+			
+			$id_hidrante = $object[self::ID_HIDRANTE];
+            $fecha_mod = $object[self::fecha_mod];
+            $usuario_mod = $object[self::USUARIO_MOD];
 
             $sentencia->bindParam(1, $id_hidrante);
             $sentencia->bindParam(2, $fecha_mod);
             $sentencia->bindParam(3, $usuario_mod);
-
-            $nombre = $object[self::NOMBRE];
-            $fecha_mod = $object[self::fecha_mod];
-            $usuario_mod = $object[self::USUARIO_MOD];
 
             $sentencia->execute();
 
             // Retornar en el último id insertado
             return $pdo->lastInsertId();
         } catch (PDOException $e) {
-            return false;
+            return $e->getTrace();
         }
 
     }
@@ -87,6 +87,20 @@ class Movimiento
             $comando->execute();
 
             return $comando->fetchAll(PDO::FETCH_ASSOC);
+		}catch(PDOException $e){
+			return false;
+		}
+	}
+	
+	public static function getLastMovs($cantidad){
+		$consulta = "SELECT * FROM ".self::TABLE_NAME." ORDER BY idmov DESC LIMIT ".$cantidad;
+		
+		try{
+			$comando = DatabaseConnection::getInstance()->getDb()->prepare($consulta);
+			$comando->execute();
+			
+			return $comando->fetchAll(PDO::FETCH_ASSOC);
+			
 		}catch(PDOException $e){
 			return false;
 		}
