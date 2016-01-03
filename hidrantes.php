@@ -74,8 +74,9 @@ class Hidrante
 
             $pdo = DatabaseConnection::getInstance()->getDb();
 
-            // Sentencia INSERT
-            $comando = "INSERT INTO " . self::TABLE_NAME . " ( " .
+			if($object[self::ID] == 0){
+				            // Sentencia INSERT
+				$comando = "INSERT INTO " . self::TABLE_NAME . " ( " .
                 self::NOMBRE . "," .
                 self::POSICION . "," .
                 self::ESTADO . "," .
@@ -87,36 +88,84 @@ class Hidrante
 				self::OBS 
                 . ")" .
                 " VALUES(?,?,?,?,?,?,?,?,?)";
+				
+				 // Preparar la sentencia
+				$sentencia = $pdo->prepare($comando);
+				
+				$nombre = $object[self::NOMBRE];
+				$posicion = $object[self::POSICION];
+				$estado = $object[self::ESTADO];
+				$psi = $object[self::PSI];
+				$t4 = $object[self::T4];
+				$t25 = $object[self::T25];
+				$acople = $object[self::ACOPLE];
+				$foto= $object[self::FOTO];
+				$obs = $object[self::OBS];
 
-            // Preparar la sentencia
-            $sentencia = $pdo->prepare($comando);
-			//print_r($pdo->errorInfo());
+				$sentencia->bindParam(1, $nombre);
+				$sentencia->bindParam(2, $posicion);
+				$sentencia->bindParam(3, $estado);
+				$sentencia->bindParam(4, $psi, PDO::PARAM_INT);
+				$sentencia->bindParam(5, $t4, PDO::PARAM_INT);
+				$sentencia->bindParam(6, $t25, PDO::PARAM_INT);
+				$sentencia->bindParam(7, $acople);
+				$sentencia->bindParam(8, $foto);
+				$sentencia->bindParam(9, $obs);
+
+				$sentencia->execute();
 			
-			$nombre = $object[self::NOMBRE];
-            $posicion = $object[self::POSICION];
-            $estado = $object[self::ESTADO];
-			$psi = $object[self::PSI];
-            $t4 = $object[self::T4];
-			$t25 = $object[self::T25];
-			$acople = $object[self::ACOPLE];
-            $foto= $object[self::FOTO];
-            $obs = $object[self::OBS];
-
-            $sentencia->bindParam(1, $nombre);
-            $sentencia->bindParam(2, $posicion);
-            $sentencia->bindParam(3, $estado);
-			$sentencia->bindParam(4, $psi, PDO::PARAM_INT);
-            $sentencia->bindParam(5, $t4, PDO::PARAM_INT);
-			$sentencia->bindParam(6, $t25, PDO::PARAM_INT);
-            $sentencia->bindParam(7, $acople);
-            $sentencia->bindParam(8, $foto);
-            $sentencia->bindParam(9, $obs);
-
-            $sentencia->execute();
+				// Retornar en el último id insertado
+				return $pdo->lastInsertId();
 			
-            // Retornar en el último id insertado
-            return $pdo->lastInsertId();
+			}else{
+				$comando = "UPDATE " . self::TABLE_NAME . " SET " .
+                self::NOMBRE . "= :nombre, " .
+                self::POSICION . "= :posicion, " .
+                self::ESTADO . "= :estado, " .
+				self::PSI . "= :psi, " .
+				self::T4 . "= :t4, " .
+				self::T25 . "= :t25, " .
+				self::ACOPLE . "= :acople, " .
+				self::FOTO . "= :foto, " .
+				self::OBS . "= :obs " .
+                " WHERE " .
+				self::ID . "= :id ";
+				
+				 // Preparar la sentencia
+				$sentencia = $pdo->prepare($comando);
+				
+				$id = $object[self::ID];
+				$nombre = $object[self::NOMBRE];
+				$posicion = $object[self::POSICION];
+				$estado = $object[self::ESTADO];
+				$psi = $object[self::PSI];
+				$t4 = $object[self::T4];
+				$t25 = $object[self::T25];
+				$acople = $object[self::ACOPLE];
+				$foto= $object[self::FOTO];
+				$obs = $object[self::OBS];
+
+				$sentencia->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+				$sentencia->bindParam(':posicion', $posicion, PDO::PARAM_STR);
+				$sentencia->bindParam(':estado', $estado, PDO::PARAM_STR);
+				$sentencia->bindParam(':psi', $psi, PDO::PARAM_INT);
+				$sentencia->bindParam(':t4', $t4, PDO::PARAM_INT);
+				$sentencia->bindParam(':t25', $t25, PDO::PARAM_INT);
+				$sentencia->bindParam(':acople', $acople, PDO::PARAM_STR);
+				$sentencia->bindParam(':foto', $foto, PDO::PARAM_STR);
+				$sentencia->bindParam(':obs', $obs, PDO::PARAM_STR);
+				$sentencia->bindParam(':id', $id, PDO::PARAM_INT);
+				
+				$sentencia->execute();
+				
+				// Retornar el id del hidrante actualizado
+				return $id;
+			}			
+           
         } catch (PDOException $e) {
+			$PDOerror = fopen("PDOerror.txt", "w");
+			fwrite($PDOerror, $e->getTraceAsString());
+			fclose($PDOerror);
             return false;
         }
 

@@ -10,3 +10,8 @@
 [01-Jan-2016 16:59:01 America/New_York] PHP Fatal error:  Class 'Movimientos' not found in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 16
 [01-Jan-2016 17:15:41 America/New_York] PHP Parse error:  syntax error, unexpected '}' in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 39
 [02-Jan-2016 10:45:38 America/New_York] PHP Fatal error:  Function name must be a string in /home/yoloofpp/public_html/hidrantes/DBsync.php on line 29
+[03-Jan-2016 13:38:58 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 132
+[03-Jan-2016 13:39:54 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 132
+[03-Jan-2016 13:40:27 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 132
+[03-Jan-2016 13:41:15 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 132
+[03-Jan-2016 13:41:46 America/New_York] PHP Parse error:  syntax error, unexpected 'self' (T_STRING) in /home/yoloofpp/public_html/hidrantes/hidrantes.php on line 132

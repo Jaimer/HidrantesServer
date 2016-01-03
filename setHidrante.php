@@ -17,14 +17,8 @@ require 'movimientos.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$datos = file_get_contents("php://input");
-	$txthidrante = fopen("hidrante.txt", "w");
-	$texto = print_r($datos, true);
-	fwrite($txthidrante, $texto);
-	fclose($txthidrante);
-
-    // Decodificando formato Json
-    $body = json_decode($datos, true);
+	// Decodificando formato Json
+    $body = json_decode(file_get_contents("php://input"), true);
 	
     // Insertar hidrante
     $idHidrante = Hidrante::insertRow($body);
