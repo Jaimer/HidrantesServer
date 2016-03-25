@@ -3,8 +3,7 @@
 
 require_once 'conexion.php';
 
-class Hidrante
-{
+class Hidrante{
     // Nombre de la tabla asociada a esta clase
     const TABLE_NAME = "Hidrantes";
 
@@ -28,16 +27,13 @@ class Hidrante
 	
 	const OBS = "obs";
 	
-    function __construct()
-    {
-    }
+    function __construct(){}
 
     /**
      * Obtiene todos los gastos de la base de datos
      * @return array|bool Arreglo con todos los gastos o false en caso de error
      */
-    public static function getAll()
-    {
+    public static function getAll(){
         $consulta = "SELECT * FROM " . self::TABLE_NAME;
         try {
             // Preparar sentencia
@@ -68,8 +64,7 @@ class Hidrante
         }
 	}
 
-    public static function insertRow($object)
-    {
+    public static function insertRow($object){
         try {
 
             $pdo = DatabaseConnection::getInstance()->getDb();
