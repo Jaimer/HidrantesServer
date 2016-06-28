@@ -1,0 +1,3 @@
+#0 /home/yoloofpp/public_html/hidrantes/hidrantes.php(115): PDOStatement->execute()
+#1 /home/yoloofpp/public_html/hidrantes/setHidrante.php(24): Hidrante::insertRow(NULL)
+#2 {main}
